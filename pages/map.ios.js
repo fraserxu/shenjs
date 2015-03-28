@@ -24,7 +24,7 @@ var MapPage = React.createClass({
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <MapView
           style={styles.map}
           region={this.state.mapRegion}
@@ -37,14 +37,15 @@ var MapPage = React.createClass({
 
 var styles = StyleSheet.create({
   map: {
-    height: 400,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#000000',
+    height: 400
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  container: {
+    flex: 1,
+    paddingTop: 60,
   }
 });
 

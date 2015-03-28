@@ -19,7 +19,7 @@ var SchedulePage = require('./pages/schedule.ios');
 var AboutPage = require('./pages/about.ios');
 var MapPage = require('./pages/map.ios');
 
-var tabs = React.createClass({
+var shenjs = React.createClass({
 
   statics: {
     title: 'ShenJS',
@@ -28,100 +28,79 @@ var tabs = React.createClass({
 
   getInitialState: function() {
     return {
-      selectedTab: 'scheduleTab',
-      presses: 0,
+      selectedTab: 'scheduleTab'
     };
   },
 
-  _renderContent: function(pageText: string) {
-    return (
-      <View style={[styles.tabContent]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-      </View>
-    );
-  },
-
   render: function() {
-
     return (
       <TabBarIOS
         selectedTab={this.state.selectedTab}>
         <TabBarItemIOS
           accessibilityLabel="Schedule"
+          title="Schedule"
           name="scheduleTab"
-          icon={_ix_DEPRECATED('mostRecent')}
+          icon={{}}
           selected={this.state.selectedTab === 'scheduleTab'}
           onPress={() => {
             this.setState({
               selectedTab: 'scheduleTab'
             });
           }}>
-          <SchedulePage />
+          <NavigatorIOS
+            style={styles.container}
+            initialRoute={{
+              title: 'Schedule',
+              component: SchedulePage,
+            }}
+          />
         </TabBarItemIOS>
         <TabBarItemIOS
           name="mapTab"
-          icon={_ix_DEPRECATED('favorites')}
+          icon={{}}
           accessibilityLabel="Map"
+          title="Map"
           selected={this.state.selectedTab === 'mapTab'}
           onPress={() => {
             this.setState({
               selectedTab: 'mapTab',
             });
           }}>
-          <MapPage />
+          <NavigatorIOS
+            style={styles.container}
+            initialRoute={{
+              title: 'Map',
+              component: MapPage,
+            }}
+          />
         </TabBarItemIOS>
         <TabBarItemIOS
           name="aboutTab"
-          icon={_ix_DEPRECATED('contacts')}
+          icon={{}}
           accessibilityLabel="About"
           selected={this.state.selectedTab === 'aboutTab'}
+          title="About"
           onPress={() => {
             this.setState({
               selectedTab: 'aboutTab'
             });
           }}>
-          <AboutPage />
+          <NavigatorIOS
+            style={styles.container}
+            initialRoute={{
+              title: 'About',
+              component: AboutPage,
+            }}
+          />
         </TabBarItemIOS>
       </TabBarIOS>
     );
   }
 });
 
-var App = React.createClass({
-  render: function() {
-    return (
-      <NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'Shen JS',
-          component: tabs,
-          passProps: {
-            onExternalExampleRequested: (example) => {
-              this.setState({ openExternalExample: example, });
-            },
-          }
-        }}
-        itemWrapperStyle={styles.itemWrapper}
-        tintColor='#008888'
-      />
-    );
-  }
-})
-
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  itemWrapper: {
-    backgroundColor: '#eaeaea',
-  },
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
   }
 });
 
@@ -135,4 +114,4 @@ function _ix_DEPRECATED(imageUri) {
   };
 }
 
-AppRegistry.registerComponent('shenjs', () => App);
+AppRegistry.registerComponent('shenjs', () => shenjs);

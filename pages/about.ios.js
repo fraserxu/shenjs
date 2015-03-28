@@ -15,8 +15,17 @@ var AboutPage = React.createClass({
 
   render: function() {
     return (
-      <View><Text>About ShenJS</Text></View>
+      <View style={styles.container}>
+        <Text>About ShenJS</Text>
+      </View>
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 65,
   }
 });
 
