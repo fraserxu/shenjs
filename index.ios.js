@@ -41,7 +41,7 @@ var shenjs = React.createClass({
           accessibilityLabel="Schedule"
           title="Schedule"
           name="scheduleTab"
-          icon={{}}
+          icon={require('image!calendar')}
           selected={this.state.selectedTab === 'scheduleTab'}
           onPress={() => {
             this.setState({
@@ -60,7 +60,7 @@ var shenjs = React.createClass({
           accessibilityLabel="Speaker"
           title="Speaker"
           name="speakerTab"
-          icon={{}}
+          icon={require('image!speaker')}
           selected={this.state.selectedTab === 'speakerTab'}
           onPress={() => {
             this.setState({
@@ -68,6 +68,7 @@ var shenjs = React.createClass({
             });
           }}>
           <NavigatorIOS
+            tintColor='#5399fc'
             style={styles.container}
             initialRoute={{
               title: 'Speakers',
@@ -77,7 +78,7 @@ var shenjs = React.createClass({
         </TabBarItemIOS>
         <TabBarItemIOS
           name="mapTab"
-          icon={{}}
+          icon={require('image!map')}
           accessibilityLabel="Map"
           title="Map"
           selected={this.state.selectedTab === 'mapTab'}
@@ -96,7 +97,7 @@ var shenjs = React.createClass({
         </TabBarItemIOS>
         <TabBarItemIOS
           name="aboutTab"
-          icon={{}}
+          icon={require('image!about')}
           accessibilityLabel="About"
           selected={this.state.selectedTab === 'aboutTab'}
           title="About"
@@ -120,7 +121,8 @@ var shenjs = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#5399fc'
   }
 });
 
