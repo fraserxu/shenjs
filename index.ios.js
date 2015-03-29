@@ -18,6 +18,7 @@ var TabBarItemIOS = TabBarIOS.Item;
 var SchedulePage = require('./pages/schedule.ios');
 var AboutPage = require('./pages/about.ios');
 var MapPage = require('./pages/map.ios');
+var SpeakerPage = require('./pages/speaker.ios');
 
 var shenjs = React.createClass({
 
@@ -52,6 +53,25 @@ var shenjs = React.createClass({
             initialRoute={{
               title: 'Schedule',
               component: SchedulePage,
+            }}
+          />
+        </TabBarItemIOS>
+        <TabBarItemIOS
+          accessibilityLabel="Speaker"
+          title="Speaker"
+          name="speakerTab"
+          icon={{}}
+          selected={this.state.selectedTab === 'speakerTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'speakerTab'
+            });
+          }}>
+          <NavigatorIOS
+            style={styles.container}
+            initialRoute={{
+              title: 'Speakers',
+              component: SpeakerPage,
             }}
           />
         </TabBarItemIOS>
@@ -100,7 +120,7 @@ var shenjs = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   }
 });
 

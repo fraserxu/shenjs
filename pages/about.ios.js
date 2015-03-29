@@ -16,7 +16,7 @@ var AboutPage = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>About ShenJS</Text>
+        <Text>深JS——2015 JS中国开发者大会是一场专注于JavaScript和Node.js技术，为期两天的国际性技术大会。届时，大会会邀请国内外的优秀讲师为大家分享在JavaScript和Node.js技术方面的经验。继上海，北京和杭州之后，JS中国开发者大会将于2015年7月11－12日在深圳召开。</Text>
       </View>
     );
   }
@@ -25,7 +25,8 @@ var AboutPage = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 65,
+    marginTop: 60,
+    padding: 10
   }
 });
 

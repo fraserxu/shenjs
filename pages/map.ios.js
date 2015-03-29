@@ -29,6 +29,11 @@ var MapPage = React.createClass({
           style={styles.map}
           region={this.state.mapRegion}
         />
+        <View style={styles.location}>
+          <Text>地址：深圳市东滨路与临海路交汇处前海深港现代服务业合作区内</Text>
+          <Text>电话：(0755)32988888</Text>
+          <Text>网址：http://qh.vanke.com</Text>
+        </View>
       </View>
     );
   },
@@ -46,6 +51,10 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 60,
+  },
+  location: {
+    flex: 1,
+    padding: 10
   }
 });
 
