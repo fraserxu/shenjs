@@ -4,7 +4,7 @@ var React = require('react-native');
 var {
   Image,
   ListView,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   Text,
   ScrollView,
@@ -41,24 +41,25 @@ var schedulePage = React.createClass({
       color: this.state.selectedDay === 1 ? '#5399fc' : null
     };
     return (
-      <View>
+      <View style={styles.listContainer}>
         <View style={styles.tabContainer}>
-          <TouchableHighlight onPress={this.setDay.bind(this, 0)}>
+          <TouchableOpacity onPress={this.setDay.bind(this, 0)}>
             <View>
               <Text style={[styles.tabItem, tab1Style]}>Day 1</Text>
             </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.setDay.bind(this, 1)}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.setDay.bind(this, 1)}>
             <View>
               <Text style={[styles.tabItem, tab2Style]}>Day 2</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={styles.separator} />
         <View style={styles.content}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderRow}
+            automaticallyAdjustContentInsets={false}
           />
         </View>
       </View>
@@ -120,12 +121,16 @@ var SCHEDULES = [
 ];
 
 var styles = StyleSheet.create({
+  listContainer: {
+    flex: 1
+  },
   tabContainer: {
-    marginTop: 65,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10,
-    height: 35
+    paddingTop: 75,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
   },
   tabItem: {
     fontSize: 12,
