@@ -121,7 +121,9 @@ var shenjs = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  itemWrapper: {
     backgroundColor: '#5399fc'
   }
 });
