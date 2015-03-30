@@ -7,6 +7,7 @@ var {
   TouchableHighlight,
   StyleSheet,
   Text,
+  ScrollView,
   View,
 } = React;
 
@@ -19,29 +20,70 @@ var schedulePage = React.createClass({
   getInitialState: function() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
-      dataSource: ds.cloneWithRows([]),
+      dataSource: ds.cloneWithRows(SCHEDULES[0]),
+      selectedDay: 0
     };
   },
 
+  setDay: function(day) {
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState({
+      dataSource: ds.cloneWithRows(SCHEDULES[day]),
+      selectedDay: day
+    });
+  },
+
   render: function() {
+    var tab1Style = {
+      color: this.state.selectedDay === 0 ? '#5399fc' : null
+    };
+    var tab2Style = {
+      color: this.state.selectedDay === 1 ? '#5399fc' : null
+    };
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-      />
+      <View>
+        <View style={styles.tabContainer}>
+          <TouchableHighlight onPress={this.setDay.bind(this, 0)}>
+            <View>
+              <Text style={[styles.tabItem, tab1Style]}>Day 1</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.setDay.bind(this, 1)}>
+            <View>
+              <Text style={[styles.tabItem, tab2Style]}>Day 2</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.separator} />
+        <View style={styles.content}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+          />
+        </View>
+      </View>
     );
   },
 
   _renderRow: function(rowData: string, sectionID: number, rowID: number) {
+    var schedule = SCHEDULES[this.state.selectedDay];
     return (
       <View>
         <View style={styles.row}>
-          <View style={styles.textContainer}>
-            <Text style={styles.speakerName} numberOfLines={2}>
-              Title
+          <View style={styles.timeContainer}>
+            <Text style={styles.timeText} >
+              {schedule[rowID].time + '  '}
+              <Text style={styles.timeRange} >
+                {schedule[rowID].range}
+              </Text>
             </Text>
-            <Text style={styles.speakerIntro} numberOfLines={1}>
-              Description
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.title} numberOfLines={1}>
+              {schedule[rowID].title}
+            </Text>
+            <Text style={styles.description} numberOfLines={1}>
+              {schedule[rowID].speaker}
             </Text>
           </View>
         </View>
@@ -51,37 +93,83 @@ var schedulePage = React.createClass({
   }
 });
 
+var SCHEDULES = [
+  [
+    {"time": "11:00", "range": "AM", "speaker":"James Holiday","title":"Browserify Author"},
+    {"time": "12:00", "range": "AM", "speaker":"Zhao Cheng","title":"Atom Developer"},
+    {"time": "1:00", "range": "PM", "speaker":"Yu Bo","title":"Seajs Author"},
+    {"time": "2:00", "range": "PM", "speaker":"Sofish","title":"Typo.css Author"},
+    {"time": "3:00", "range": "PM", "speaker":"Luying Li","title":"Twitter Software Developer"},
+    {"time": "4:00", "range": "PM", "speaker":"Mikael Karon","title":"EF Learning Lab Architect"},
+    {"time": "5:00", "range": "PM", "speaker":"Garry Yao","title":"EF Learning Tech Lead"},
+    {"time": "6:00", "range": "PM", "speaker":"Berg","title":"Baidu Architect"},
+    {"time": "7:00", "range": "PM", "speaker":"Qing Yan","title":"Angularjs.cn Founder"},
+    {"time": "8:00", "range": "PM", "speaker":"Caesar Chi","title":"Hiiir Developer"}
+  ],
+  [
+    {"time": "12:00", "range": "AM", "speaker":"Zhao Cheng","title":"Atom Developer"},
+    {"time": "1:00", "range": "PM", "speaker":"Yu Bo","title":"Seajs Author"},
+    {"time": "2:00", "range": "PM", "speaker":"Sofish","title":"Typo.css Author"},
+    {"time": "3:00", "range": "PM", "speaker":"Luying Li","title":"Twitter Software Developer"},
+    {"time": "4:00", "range": "PM", "speaker":"Mikael Karon","title":"EF Learning Lab Architect"},
+    {"time": "5:00", "range": "PM", "speaker":"Garry Yao","title":"EF Learning Tech Lead"},
+    {"time": "6:00", "range": "PM", "speaker":"Berg","title":"Baidu Architect"},
+    {"time": "7:00", "range": "PM", "speaker":"Qing Yan","title":"Angularjs.cn Founder"},
+    {"time": "8:00", "range": "PM", "speaker":"Caesar Chi","title":"Hiiir Developer"}
+  ]
+];
+
 var styles = StyleSheet.create({
-  textContainer: {
-    flex: 1,
+  tabContainer: {
+    marginTop: 65,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+    height: 35
   },
-  speakerName: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '500',
-    marginBottom: 2,
-  },
-  speakerIntro: {
-    color: '#999999',
+  tabItem: {
     fontSize: 12,
+    fontWeight: '300'
+  },
+  content: {
+    // marginTop: -65
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: '#F6F6F6',
+  },
+  timeContainer: {
+    justifyContent: 'center',
+    width: 75,
+    height: 50
+  },
+  timeText: {
+    fontSize: 12,
+    fontWeight: '300'
+  },
+  timeRange: {
+    fontSize: 8,
+    fontWeight: '300'
+  },
+  textContainer: {
+    flex: 1,
   },
   separator: {
     height: 1,
     backgroundColor: '#CCCCCC',
   },
-  thumb: {
-    width: 64,
-    height: 64,
-  },
-  text: {
+  title: {
     flex: 1,
+    fontSize: 14,
+    fontWeight: '300',
+    marginTop: 15,
+    marginBottom: 2,
   },
+  description: {
+    color: '#999999',
+    fontSize: 12,
+  }
 });
 
 module.exports = schedulePage;

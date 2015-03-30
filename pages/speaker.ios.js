@@ -71,12 +71,16 @@ var SPEAKERS = [
 var styles = StyleSheet.create({
   textContainer: {
     flex: 1,
-    marginLeft: 10
+    marginLeft: 10,
+    justifyContent: 'center',
+    // flexWrap: 'wrap',
+    // alignItems: 'flex-start'
   },
   speakerName: {
     flex: 1,
     fontSize: 14,
     fontWeight: '300',
+    marginTop: 10,
     marginBottom: 2,
   },
   speakerIntro: {
