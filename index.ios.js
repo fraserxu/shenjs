@@ -29,6 +29,7 @@ var shenjs = React.createClass({
   render: function() {
     return (
       <TabBarIOS
+        style={styles.itemWrapper}
         selectedTab={this.state.selectedTab}>
         <TabBarItemIOS
           accessibilityLabel="Schedule"
@@ -115,7 +116,8 @@ var shenjs = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    color: '#5399fc'
   },
   itemWrapper: {
     backgroundColor: '#5399fc'

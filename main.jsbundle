@@ -965,6 +965,7 @@ var shenjs = React.createClass({displayName: "shenjs",
   render: function() {
     return (
       React.createElement(TabBarIOS, {
+        style: styles.itemWrapper, 
         selectedTab: this.state.selectedTab}, 
         React.createElement(TabBarItemIOS, {
           accessibilityLabel: "Schedule", 
@@ -1051,7 +1052,8 @@ var shenjs = React.createClass({displayName: "shenjs",
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    color: '#5399fc'
   },
   itemWrapper: {
     backgroundColor: '#5399fc'
@@ -38502,23 +38504,22 @@ var schedulePage = React.createClass({displayName: "schedulePage",
       React.createElement(View, {style: styles.listContainer}, 
         React.createElement(View, {style: styles.tabContainer}, 
           React.createElement(TouchableOpacity, {onPress: this.setDay.bind(this, 0)}, 
-            React.createElement(View, null, 
+            React.createElement(View, {style: [styles.tab, styles.tab1]}, 
               React.createElement(Text, {style: [styles.tabItem, tab1Style]}, "Day 1")
             )
           ), 
           React.createElement(TouchableOpacity, {onPress: this.setDay.bind(this, 1)}, 
-            React.createElement(View, null, 
+            React.createElement(View, {style: styles.tab}, 
               React.createElement(Text, {style: [styles.tabItem, tab2Style]}, "Day 2")
             )
           )
         ), 
         React.createElement(View, {style: styles.separator}), 
-        React.createElement(View, {style: styles.content}, 
-          React.createElement(ListView, {
-            dataSource: this.state.dataSource, 
-            renderRow: this._renderRow, 
-            automaticallyAdjustContentInsets: false}
-          )
+        React.createElement(ListView, {
+          style: styles.content, 
+          dataSource: this.state.dataSource, 
+          renderRow: this._renderRow, 
+          automaticallyAdjustContentInsets: false}
         )
       )
     );
@@ -38585,17 +38586,23 @@ var styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingTop: 75,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    marginTop: 65,
+    height: 30,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  tab: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  tab1: {
+    borderRightWidth: 1,
+    borderColor: '#CCCCCC'
   },
   tabItem: {
     fontSize: 12,
     fontWeight: '300'
-  },
-  content: {
-    // marginTop: -65
   },
   row: {
     flexDirection: 'row',
@@ -38621,6 +38628,9 @@ var styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#CCCCCC',
+  },
+  content: {
+    marginBottom: 50
   },
   title: {
     flex: 1,
@@ -38701,7 +38711,8 @@ var $__0=
   
   
   
-  React,StyleSheet=$__0.StyleSheet,MapView=$__0.MapView,Text=$__0.Text,View=$__0.View;
+  
+  React,StyleSheet=$__0.StyleSheet,MapView=$__0.MapView,Text=$__0.Text,View=$__0.View,ScrollView=$__0.ScrollView;
 
 var MapPage = React.createClass({displayName: "MapPage",
 
@@ -38718,15 +38729,15 @@ var MapPage = React.createClass({displayName: "MapPage",
 
   render:function() {
     return (
-      React.createElement(View, {style: styles.container}, 
+      React.createElement(ScrollView, {style: styles.container}, 
         React.createElement(MapView, {
           style: styles.map, 
           region: this.state.mapRegion}
         ), 
         React.createElement(View, {style: styles.location}, 
-          React.createElement(Text, null, "地址：深圳市东滨路与临海路交汇处前海深港现代服务业合作区内"), 
           React.createElement(Text, null, "电话：(0755)32988888"), 
-          React.createElement(Text, null, "网址：http://qh.vanke.com")
+          React.createElement(Text, null, "网址：http://qh.vanke.com"), 
+          React.createElement(Text, null, "地址：深圳市东滨路与临海路交汇处前海深港现代服务业合作区内")
         )
       )
     );
@@ -38736,15 +38747,10 @@ var MapPage = React.createClass({displayName: "MapPage",
 
 var styles = StyleSheet.create({
   map: {
-    height: 400
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    height: 300
   },
   container: {
-    flex: 1,
-    paddingTop: 60,
+    flex: 1
   },
   location: {
     flex: 1,

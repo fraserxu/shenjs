@@ -4,7 +4,7 @@ var React = require('react-native');
 var {
   Image,
   ListView,
-  TouchableOpacity,
+  TouchableHighlight,
   StyleSheet,
   Text,
   ScrollView,
@@ -43,16 +43,16 @@ var schedulePage = React.createClass({
     return (
       <View style={styles.listContainer}>
         <View style={styles.tabContainer}>
-          <TouchableOpacity onPress={this.setDay.bind(this, 0)}>
+          <TouchableHighlight onPress={this.setDay.bind(this, 0)}>
             <View style={[styles.tab, styles.tab1]}>
-              <Text style={[styles.tabItem, tab1Style]}>Day 1</Text>
+              <Text style={[styles.tabItem, tab1Style]}>Day 1 test</Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.setDay.bind(this, 1)}>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.setDay.bind(this, 1)}>
             <View style={styles.tab}>
               <Text style={[styles.tabItem, tab2Style]}>Day 2</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
         <View style={styles.separator} />
         <ListView

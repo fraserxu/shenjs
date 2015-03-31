@@ -6,6 +6,7 @@ var {
   MapView,
   Text,
   View,
+  ScrollView
 } = React;
 
 var MapPage = React.createClass({
@@ -23,17 +24,17 @@ var MapPage = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <MapView
           style={styles.map}
           region={this.state.mapRegion}
         />
         <View style={styles.location}>
-          <Text>地址：深圳市东滨路与临海路交汇处前海深港现代服务业合作区内</Text>
           <Text>电话：(0755)32988888</Text>
           <Text>网址：http://qh.vanke.com</Text>
+          <Text>地址：深圳市东滨路与临海路交汇处前海深港现代服务业合作区内</Text>
         </View>
-      </View>
+      </ScrollView>
     );
   },
 
@@ -41,15 +42,10 @@ var MapPage = React.createClass({
 
 var styles = StyleSheet.create({
   map: {
-    height: 400
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    height: 300
   },
   container: {
-    flex: 1,
-    paddingTop: 60,
+    flex: 1
   },
   location: {
     flex: 1,
