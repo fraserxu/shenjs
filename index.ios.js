@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
@@ -15,17 +11,14 @@ var {
 } = React;
 
 var TabBarItemIOS = TabBarIOS.Item;
+
+
 var SchedulePage = require('./pages/schedule.ios');
 var AboutPage = require('./pages/about.ios');
 var MapPage = require('./pages/map.ios');
 var SpeakerPage = require('./pages/speaker.ios');
 
 var shenjs = React.createClass({
-
-  statics: {
-    title: 'ShenJS',
-    description: '2015 JavaScript Conference China'
-  },
 
   getInitialState: function() {
     return {
@@ -50,6 +43,7 @@ var shenjs = React.createClass({
           }}>
           <NavigatorIOS
             style={styles.container}
+            barTintColor='#5399fc'
             initialRoute={{
               title: 'Schedule',
               component: SchedulePage,
@@ -127,15 +121,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#5399fc'
   }
 });
-
-// This is needed because the actual image may not exist as a file and
-// is used by the native code to load a system image.
-// TODO(nicklockwood): How can this fit our require system?
-function _ix_DEPRECATED(imageUri) {
-  return {
-    uri: imageUri,
-    isStatic: true,
-  };
-}
 
 AppRegistry.registerComponent('shenjs', () => shenjs);

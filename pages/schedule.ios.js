@@ -44,24 +44,23 @@ var schedulePage = React.createClass({
       <View style={styles.listContainer}>
         <View style={styles.tabContainer}>
           <TouchableOpacity onPress={this.setDay.bind(this, 0)}>
-            <View>
+            <View style={[styles.tab, styles.tab1]}>
               <Text style={[styles.tabItem, tab1Style]}>Day 1</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.setDay.bind(this, 1)}>
-            <View>
+            <View style={styles.tab}>
               <Text style={[styles.tabItem, tab2Style]}>Day 2</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.separator} />
-        <View style={styles.content}>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
-            automaticallyAdjustContentInsets={false}
-          />
-        </View>
+        <ListView
+          style={styles.content}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          automaticallyAdjustContentInsets={false}
+        />
       </View>
     );
   },
@@ -127,17 +126,23 @@ var styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingTop: 75,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    marginTop: 65,
+    height: 30,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  tab: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  tab1: {
+    borderRightWidth: 1,
+    borderColor: '#CCCCCC'
   },
   tabItem: {
     fontSize: 12,
     fontWeight: '300'
-  },
-  content: {
-    // marginTop: -65
   },
   row: {
     flexDirection: 'row',
@@ -163,6 +168,9 @@ var styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#CCCCCC',
+  },
+  content: {
+    marginBottom: 50
   },
   title: {
     flex: 1,

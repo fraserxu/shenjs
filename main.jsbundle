@@ -934,11 +934,7 @@ Object.assign = function(target, sources) {
   setupErrorGuard();
 })(this);
 
-__d('shenjs/index.ios',["react-native/Libraries/react-native/react-native","shenjs/pages/schedule.ios","shenjs/pages/about.ios","shenjs/pages/map.ios","shenjs/pages/speaker.ios","image!calendar","image!speaker","image!map","image!about"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+__d('shenjs/index.ios',["react-native/Libraries/react-native/react-native","shenjs/pages/schedule.ios","shenjs/pages/about.ios","shenjs/pages/map.ios","shenjs/pages/speaker.ios","image!calendar","image!speaker","image!map","image!about"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React = require('react-native/Libraries/react-native/react-native');
 var $__0=
@@ -951,17 +947,14 @@ var $__0=
   React,AppRegistry=$__0.AppRegistry,NavigatorIOS=$__0.NavigatorIOS,TabBarIOS=$__0.TabBarIOS,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View;
 
 var TabBarItemIOS = TabBarIOS.Item;
+
+
 var SchedulePage = require('shenjs/pages/schedule.ios');
 var AboutPage = require('shenjs/pages/about.ios');
 var MapPage = require('shenjs/pages/map.ios');
 var SpeakerPage = require('shenjs/pages/speaker.ios');
 
 var shenjs = React.createClass({displayName: "shenjs",
-
-  statics: {
-    title: 'ShenJS',
-    description: '2015 JavaScript Conference China'
-  },
 
   getInitialState: function() {
     return {
@@ -986,6 +979,7 @@ var shenjs = React.createClass({displayName: "shenjs",
           }.bind(this)}, 
           React.createElement(NavigatorIOS, {
             style: styles.container, 
+            barTintColor: "#5399fc", 
             initialRoute: {
               title: 'Schedule',
               component: SchedulePage,
@@ -1063,16 +1057,6 @@ var styles = StyleSheet.create({
     backgroundColor: '#5399fc'
   }
 });
-
-// This is needed because the actual image may not exist as a file and
-// is used by the native code to load a system image.
-// TODO(nicklockwood): How can this fit our require system?
-function _ix_DEPRECATED(imageUri) {
-  return {
-    uri: imageUri,
-    isStatic: true,
-  };
-}
 
 AppRegistry.registerComponent('shenjs', function()  {return shenjs;});
 });
@@ -38709,8 +38693,7 @@ var styles = StyleSheet.create({
 
 module.exports = AboutPage;
 });
-__d('shenjs/pages/map.ios',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  
-'use strict';
+__d('shenjs/pages/map.ios',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React = require('react-native/Libraries/react-native/react-native');
 var $__0=
